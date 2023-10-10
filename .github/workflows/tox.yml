@@ -16,7 +16,7 @@ on:
 
 jobs:
   tox:
-    name: tox on ${{ inputs.os }}
+    name: ${{ inputs.os }}/${{ matrix.env }}/${{ matrix.arch }}
     runs-on: ${{ inputs.os }}
     strategy:
       matrix:
