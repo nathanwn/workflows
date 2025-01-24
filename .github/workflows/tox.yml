@@ -12,7 +12,7 @@ on:
       env:
         required: false
         type: string
-        default: '["py38", "py39", "py310", "py311", "py312", "pre-commit"]'
+        default: '["py39", "py310", "py311", "py312", "py313", "pre-commit"]'
 
 jobs:
   tox:
@@ -24,16 +24,16 @@ jobs:
         arch: ${{ fromJSON(inputs.arch) }}
         env: ${{ fromJSON(inputs.env) }}
     steps:
-    - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608  # v4.1.0
-    - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+    - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b  # v5.3.0
       with:
         python-version: |
           ${{
-            matrix.env == 'py38'  && '3.8'  ||
             matrix.env == 'py39'  && '3.9'  ||
             matrix.env == 'py310' && '3.10' ||
             matrix.env == 'py311' && '3.11' ||
-                                     '3.12'
+            matrix.env == 'py312' && '3.12' ||
+                                     '3.13'
           }}
         architecture: ${{ matrix.arch }}
     - run: python -m pip install --upgrade pip
